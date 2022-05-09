@@ -1,10 +1,38 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "../libraries/LibSomeStorage.sol";
+import "../libraries/LibNiceStorage.sol";
+
+import "hardhat/console.sol";
+
 contract Test1Facet {
+    NiceStorage internal s;
+
     event TestEvent(address something);
 
-    function test1Func1() external {}
+    function setStartTime() external {
+
+        LibSomeStorage.SomeStorage storage ls = LibSomeStorage.diamondStorage();
+        
+        LibSomeStorage.StorageInfo storage lss = ls.storingInfo[msg.sender];
+        require(lss.startTime == 0, "Not Zero");
+        lss.startTime = block.timestamp;
+        s.totalUsers += 1;
+        s.registered[msg.sender] = true;
+        console.log("Checkpoint Reached");
+
+    }
+
+    function getStartTime() external view returns(uint, bool){
+
+        LibSomeStorage.SomeStorage storage ls = LibSomeStorage.diamondStorage();
+        LibSomeStorage.StorageInfo storage lss = ls.storingInfo[msg.sender];
+
+        return (lss.startTime, s.registered[msg.sender]);
+
+    }
+
 
     function test1Func2() external {}
 
