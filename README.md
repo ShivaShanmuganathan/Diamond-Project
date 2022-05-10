@@ -96,6 +96,35 @@ Similarly you need to use the ABI of a facet in Solidity code in order to call f
 string result = MyUsefulFacet(address(diamondContract)).getResult()
 ```
 
+## Contract Folder Structure
+
+```
+contracts
+├── Diamond.sol
+├── facets
+│   ├── DiamondCutFacet.sol
+│   ├── DiamondLoupeFacet.sol
+│   ├── OwnershipFacet.sol
+│   ├── Test1Facet.sol
+│   ├── Test2Facet.sol
+│   ├── Test3Facet.sol
+│   └── Test4Facet.sol
+├── interfaces
+│   ├── IDiamondCut.sol
+│   ├── IDiamondLoupe.sol
+│   ├── IERC165.sol
+│   └── IERC173.sol
+├── libraries
+│   ├── LibDiamond.sol
+│   ├── LibNiceStorage.sol
+│   ├── LibNiceStorage2.sol
+│   ├── LibRelevantFunctions.sol
+│   ├── LibSomeStorage.sol
+│   └── LibSomeStorage2.sol
+└── upgradeInitializers
+    └── DiamondInit.sol
+```
+
 ## Get Help and Join the Community
 
 If you need help or would like to discuss diamonds then send me a message [on twitter](https://twitter.com/mudgen), or [email me](mailto:nick@perfectabstractions.com). Or join the [EIP-2535 Diamonds Discord server](https://discord.gg/kQewPw2).
